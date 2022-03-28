@@ -18,6 +18,7 @@ passwd = driver.find_element(By.ID, "pass")
 passwd.send_keys(password)
 sign_in_but = driver.find_element(By.CLASS_NAME, "primary-button")
 sign_in_but.click()
+print("UCLA Logon Successful")
 
 #duo mobile
 try:
@@ -28,8 +29,87 @@ try:
     enter_a_psscode_button = driver.find_element(By.ID, "passcode")
     enter_a_psscode_button.click()
     enter_passcode_field = driver.find_element(By.NAME, "passcode")
-    enter_passcode_field.send_keys("123456")
+    enter_passcode_field.send_keys("954841")
+    enter_a_psscode_button.click()
+    driver.switch_to.default_content()
+    print("Duo Mobile 2FA Authentication Successful")
 except:
     driver.quit()
-    print("NOT FOUND")
-    exit()
+    print("Duo Authentication Failed")
+    exit(1)
+
+# fill the survey
+try:
+#page 1
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    next_button.click()
+
+    #page 2
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    next_button.click()
+
+    #page 3
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    no_button = driver.find_element(By.ID, "QID215-2-label")
+    no_button.click()
+    next_button.click()
+
+    #page 4
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    yes_button = driver.find_element(By.ID, "QID207-4-label")
+    yes_button.click()
+    next_button.click()
+
+    #page 5
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    no_button = driver.find_element(By.ID, "QID2-1-label")
+    no_button.click()
+    next_button.click()
+
+    #page 6
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    no_button = driver.find_element(By.ID, "QID12-2-label")
+    no_button.click()
+    next_button.click()
+
+    #page 7
+    next_button = WebDriverWait(driver,10).until(
+        EC.element_to_be_clickable((By.ID, "NextButton"))
+    )
+    no_button = driver.find_element(By.ID, "QID289-2-label")
+    no_button.click()
+    next_button.click()
+
+    #page 8 for user without test result
+    page = WebDriverWait(driver,10).until(
+        EC.presence_of_element_located((By.ID, "Questions"))
+    )
+    try:
+        WebDriverWait(driver,10).until(
+            EC.presence_of_element_located((By.ID, "EndOfSurvey"))
+        )
+    except: 
+        next_button = WebDriverWait(driver,10).until(
+            EC.element_to_be_clickable((By.ID, "NextButton"))
+        )
+        yes_button = driver.find_element(By.ID, "QID293-1-label")
+        yes_button.click()
+        next_button.click()
+    print("Survey filled successfully!")
+
+except:
+    # driver.quit()
+    print("Fail to fill the survey")
+    # exit(1)
