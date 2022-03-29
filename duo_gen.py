@@ -3,22 +3,26 @@
 import pyotp
 import sys
 
-if len(sys.argv) == 2:
-    file = sys.argv[1]
-else:
-    file = "duotoken.hotp"
+def gen():
 
-f = open(file, "r+")
-secret = f.readline()[0:-1]
-offset = f.tell()
-count = int(f.readline())
+    if len(sys.argv) == 2:
+        file = sys.argv[1]
+    else:
+        file = "duotoken.hotp"
 
-print("secret", secret)
-print("count", count)
+    f = open(file, "r+")
+    secret = f.readline()[0:-1]
+    offset = f.tell()
+    count = int(f.readline())
 
-hotp = pyotp.HOTP(secret)
-print("Code:", hotp.at(count))
+    # print("secret", secret)
+    # print("count", count)
 
-f.seek(offset)
-f.write(str(count + 1))
-f.close()
+    hotp = pyotp.HOTP(secret)
+    # print("Code:", hotp.at(count))
+
+    f.seek(offset)
+    f.write(str(count + 1))
+    f.close()
+
+    return(hotp.at(count))
