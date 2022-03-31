@@ -9,6 +9,8 @@ Please follow the UCLA guideline for COVID-19, and stay safe Bruins
 ## First Time User
 To Use this script, you need to have a Chrome browser
 
+Open main.exe to start the script
+
 Please enter the activation link you obtained, and then enter your UCLA Logon ID and password
 
 The script will automatically install the Chrome Web Driver for you, and if it doesn't, please check update your Chrome's version
