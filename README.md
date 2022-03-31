@@ -1,40 +1,30 @@
-## Duo One Time Password Generator
+## Symptom Monitoring System Auto Fill Script
 
-This is a little script I put together after I reverse engineered the Duo 2FA
-Mobile App and figured out how their auth flow works. This can be ported into
-probably a useful desktop app or chrome extention and can probably be used to
-write bots for MIT Services that require auth.
+## To users of this script
+This script is only for a quick and easy way to fill the Symptom Monitoring Survey, please do not use it when you have any symptom of COVID-19
+Please follow the UCLA guideline for COVID-19, and stay safe Bruins
 
-### Usage
+## To obtain the activation link, please refer to activation.pdf
 
-Install stuff,
+## First Time User
+To Use this script, you need to have a Chrome browser
 
-```
-pip install -r requirements.txt
-```
-Grab the text from the QR code, it is the format: XXXXXXXXXX-YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+Please enter the activation link you obtained, and then enter your UCLA Logon ID and password
 
-Use https://www.base64decode.org/ to decode YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY and put it in 'host'
+The script will automatically install the Chrome Web Driver for you, and if it doesn't, please check update your Chrome's version
 
-Decoded format should be in the format: api-XXXXX.duosecurity.com . Place that in "Host"
+The info about Duo 2FA will be stored in duotoken.hotp, and your UCLA Logon ID and password will be stored in user_info.txt, please keep these 2 files in the same folder of the script
 
-Then run:
-```
-./duo_activate.py
-```
+The script will install the Chrome Web Driver at its current folder, and if you want to move the Chrome Web Driver into a differnt folder, please don't forget
+to change the path in user_info.txt
 
-If everything worked you can then generate a code by running:
+If the script doesn't successfully run at the first time, please try again
 
-```
-./duo_gen.py
-```
+## Future updates
+The script may get obselete when UCLA updates the Symptom Monitoring Survey, so stay updated
 
-Warning: These are HOTP tokens and generate codes increments a counter.  If you
-get too far out of sync with the server it will stop accepting your codes.
-
-```
-./duo_export.py
-```
-
-Export the duo hotp secret as a QR code for inclusion in third-party hotp apps
-like freeotp.
+## Notes
+The way to bypass DUO 2FA was incorperated from https://github.com/revalo/duo-bypass
+And the package for auto install Chrome Web Driver was from https://github.com/yeongbin-jo/python-chromedriver-autoinstaller
+This script was also inspired by https://github.com/SparkShen02/Easy-Duo-Authentication/
+Massive thank you to all the contributors to the projects above
