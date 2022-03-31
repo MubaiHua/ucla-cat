@@ -22,6 +22,13 @@ to change the path in user_info.txt
 
 If the script doesn't successfully run at the first time, please try again
 
+## For people who can't run main.exe
+If you have a python installed in your computer, you can run this command to install the packages needed
+```
+pip install -r requirements.txt
+```
+And then run the script main.py using Python
+
 ## Future updates
 The script may get obselete when UCLA updates the Symptom Monitoring Survey, so stay updated
 
