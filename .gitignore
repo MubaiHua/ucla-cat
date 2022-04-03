@@ -4,3 +4,8 @@ response.json
 user_info.txt
 chromedriver
 chromedriver.*
+.DS_Store
+dist
+build
+__pychache__
+main.spec

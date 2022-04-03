@@ -13,61 +13,132 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import chromedriver_autoinstaller
 
+global ERR_CODE
+global ERR_MSG
+ERR_CODE = 'unknown_error'
+ERR_MSG = '\nPlease contact the developer team with your error (code: %s)' % ERR_CODE
+
 def main():
+    print("\nWelcome to UCLA COVID-symptom-survey Auto-filling Tool!\n")
+    
     user_file_exist = os.path.exists("user_info.txt")
     hotp_file_exist = os.path.exists("duotoken.hotp")
-
-    if(user_file_exist== False or hotp_file_exist == False):
-        print("Please follow the instruction and obtain the one-time activation link")
-        while(True):
-            try:
-                link = input("Please paste your link here: ")
-                host = "api" + link[link.index("-"):link.index("com")+3]
-                code = link[link.index("/", 36, 60)+1:]
-                break
-            except KeyboardInterrupt:
-                exit()
-            except:
-                print("Please enter a valid link")
-
-        print("Please enter your UCLA Logon ID and password")
-        id = input("Logon ID: ")
-        password = input("Password: ")
-        path = ""
-        try:
-            path = driverInstall()
-
-        except:
-            print("Fail to install chrome web driver")
-
-        try:
-            f = open("user_info.txt", "x")
-            f.write(id+"\n")
-            f.write(password+"\n")
-            f.write(path+"\n")
-            f.close()
-
-        except:
-            print("Please delete the file user_info.txt and redo the set up process")
-
-        activate(host,code)
-        time.sleep(3)
-
-    print("Obtain the one-time passcode...")
+    
+    fill_success = False
+    if not user_file_exist or not hotp_file_exist:
+        register_success = register_user()
+        
+        if not register_success:
+            ERR_CODE = 'user_registration_failed'
+            print(ERR_MSG)
+        else:
+            fill_success = auto_fill_survey()
+            
+    else:
+        fill_success = auto_fill_survey()
+        
+    if fill_success:
+        print("\nSurvey auto-filling success! Enjoy your day :)\n")
+    
+                
+def auto_fill_survey():
+    print("Obtaining one-time passcodes...")
     passcode = gen()
 
-    print("Execute the script to fill the survey...")
+    print("Auto-filling the survey...")
+    
     f = open("user_info.txt", "r")
     user_id = f.readline().strip()
     user_password = f.readline().strip()
     user_path = f.readline().strip()
     f.close()
+    
     try:
         auto(user_id,user_password,passcode,user_path)
-        print("Script execution success")
     except:
-        print("Script execution failed")
+        print('Failed to auto-fill the survey')
+        ERR_CODE = 'survey_filling_failed'
+        print(ERR_MSG)
+        return False
+        
+    return True
 
+def register_user():
+    print("Registering a new user...\n")
+    
+    # install chrome web driver
+    try:
+        path = driverInstall()
+
+    except:
+        print("Fail to install chrome web driver")
+        return False
+    
+    # input duo activation link
+    print("Please obtain a Duo Mobile one-time activation link by following the instruction on https://github.com/MubaiHua/Symptom-Monitoring-System-Auto")
+    while(True):
+        try:
+            link = input("Paste your link here: ")
+            host = "api" + link[link.index("-"):link.index("com")+3]
+            code = link[link.index("/", 36, 60)+1:]
+            
+            activate(host,code)
+            break
+        except:
+            print("Please enter a valid link\n")
+
+    # input logon id and password
+    print("\nPlease enter your UCLA Logon ID and password")
+    while True:
+        id = input("Logon ID: ")
+        password = input("Password: ")
+        path = ""
+    
+        # verify duo login
+        print("\nVerifying UCLA Logon sign in...")
+        auth_success = False
+        try:
+            s=Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=s)
+            driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
+            
+            #ucla logon
+            usrname = driver.find_element(By.ID, "logon")
+            usrname.send_keys(id)
+            passwd = driver.find_element(By.ID, "pass")
+            passwd.send_keys(password)
+            sign_in_but = driver.find_element(By.CLASS_NAME, "primary-button")
+            sign_in_but.click()
+        
+            duo_frame = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.ID,"duo_iframe"))
+            )
+            
+            auth_success = True
+            
+        except:
+            driver.quit()
+            print("\nFailed to sign in UCLA Logon...Please make sure your logon ID and password are correct")
+            print("\nPlease re-enter your UCLA Logon ID and password")
+        
+        if auth_success:
+            # write user information
+            try:
+                f = open("user_info.txt", "w")
+                f.write(id+"\n")
+                f.write(password+"\n")
+                f.write(path+"\n")
+                f.close()
+
+            except:
+                print("Failed to write user information")
+                return False
+            
+            driver.quit()
+            break  
+    
+    time.sleep(3)
+    return True
 
 
 #The QR Code is in the format: XXXXXXXXXX-YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
@@ -101,13 +172,13 @@ def activate(host, code):
     print(response)
     sys.exit(1)
 
-  print("secret", secret)
+#   print("secret", secret)
 
-  print("10 Next OneTime Passwords!")
+#   print("10 Next OneTime Passwords!")
   # Generate 10 Otps!
-  hotp = pyotp.HOTP(secret)
-  for _ in range(10):
-      print(hotp.at(_))
+#   hotp = pyotp.HOTP(secret)
+#   for _ in range(10):
+#       print(hotp.at(_))
 
   with open('duotoken.hotp', 'w') as file:
       file.write(secret.decode() + "\n")
@@ -121,7 +192,6 @@ def auto(username, password, code, PATH):
     s=Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=s)
     driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
-    print(driver.title)
 
     #ucla logon
     usrname = driver.find_element(By.ID, "logon")
@@ -130,7 +200,7 @@ def auto(username, password, code, PATH):
     passwd.send_keys(password)
     sign_in_but = driver.find_element(By.CLASS_NAME, "primary-button")
     sign_in_but.click()
-    print("UCLA Logon Successful")
+    print("UCLA Logon Sign-in Successful")
 
     #duo mobile
     try:
@@ -145,6 +215,7 @@ def auto(username, password, code, PATH):
         enter_a_psscode_button.click()
         driver.switch_to.default_content()
         print("Duo Mobile 2FA Authentication Successful")
+        
     except:
         driver.quit()
         print("Duo Authentication Failed")
@@ -218,7 +289,7 @@ def auto(username, password, code, PATH):
             yes_button = driver.find_element(By.ID, "QID293-1-label")
             yes_button.click()
             next_button.click()
-        print("Survey filled successfully!")
+        # print("Survey filled successfully!")
         driver.quit()
     except:
         print("Fail to fill the survey")
