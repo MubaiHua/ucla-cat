@@ -88,7 +88,7 @@ def register_user():
             print("Please enter a valid link\n")
 
     # input logon id and password
-    print("\nPlease enter your UCLA Logon ID and password")
+    print("\nPlease enter your UCLA Logon ID and password (stored on your computer - we can't see it)")
     while True:
         id = input("Logon ID: ")
         password = input("Password: ")
