@@ -6,6 +6,8 @@ import base64
 import json
 import sys
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -116,7 +118,8 @@ def activate(host, code):
 
 
 def auto(username, password, code, PATH):
-    driver = webdriver.Chrome(PATH)
+    s=Service(ChromeDriverManager().install())
+    driver = webdriver.Chrome(service=s)
     driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
     print(driver.title)
 
