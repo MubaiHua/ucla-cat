@@ -16,10 +16,10 @@ import chromedriver_autoinstaller
 global ERR_CODE
 global ERR_MSG
 ERR_CODE = 'unknown_error'
-ERR_MSG = '\nPlease contact the developer team with your error (code: %s)' % ERR_CODE
+ERR_MSG = '\nPlease run the program again or contact the developer team with your error (code: %s)' % ERR_CODE
 
 def main():
-    print("\nWelcome to UCLA COVID-symptom-survey Auto-filling Tool!\n")
+    print("\nWelcome to UCLA CAT (COVID-symptom-survey Auto-filling Tool)\n")
     
     user_file_exist = os.path.exists("user_info.txt")
     hotp_file_exist = os.path.exists("duotoken.hotp")
@@ -39,6 +39,9 @@ def main():
         
     if fill_success:
         print("\nSurvey auto-filling success! Enjoy your day :)\n")
+        exit()
+    else:
+        exit()
     
                 
 def auto_fill_survey():
@@ -55,24 +58,16 @@ def auto_fill_survey():
     
     try:
         auto(user_id,user_password,passcode,user_path)
+        return True
+        
     except:
         print('Failed to auto-fill the survey')
         ERR_CODE = 'survey_filling_failed'
         print(ERR_MSG)
         return False
-        
-    return True
 
 def register_user():
     print("Registering a new user...\n")
-    
-    # install chrome web driver
-    try:
-        path = driverInstall()
-
-    except:
-        print("Fail to install chrome web driver")
-        return False
     
     # input duo activation link
     print("Please obtain a Duo Mobile one-time activation link by following the instruction on https://github.com/MubaiHua/Symptom-Monitoring-System-Auto")
@@ -320,11 +315,6 @@ def gen():
 
     return(hotp.at(count))
 
-def driverInstall():
-    path = chromedriver_autoinstaller.install(True)  # Check if the current version of chromedriver exists
-                                      # and if it doesn't exist, download it automatically,
-                                      # then add chromedriver to path
-    return path
 
 if __name__ == '__main__':
     main()
