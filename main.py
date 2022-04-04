@@ -29,7 +29,6 @@ def main():
         register_success = register_user()
         
         if not register_success:
-            ERR_CODE = 'user_registration_failed'
             print(ERR_MSG)
         else:
             fill_success = auto_fill_survey()
@@ -39,13 +38,13 @@ def main():
         
     if fill_success:
         print("\nSurvey auto-filling success! Enjoy your day :)\n")
-        exit()
     else:
-        exit()
+        print(ERR_MSG)
+        
+    sys.exit()
     
                 
 def auto_fill_survey():
-    print("Obtaining one-time passcodes...")
     passcode = gen()
 
     print("Auto-filling the survey...")
@@ -61,8 +60,7 @@ def auto_fill_survey():
         return True
         
     except:
-        print('Failed to auto-fill the survey')
-        ERR_CODE = 'survey_filling_failed'
+        print("Survey auto-filling failed")
         print(ERR_MSG)
         return False
 
@@ -93,9 +91,16 @@ def register_user():
         print("\nVerifying UCLA Logon sign in...")
         auth_success = False
         try:
-            s=Service(ChromeDriverManager().install())
-            driver = webdriver.Chrome(service=s)
-            driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
+            # install chromedriver
+            try: 
+                s=Service(ChromeDriverManager().install())
+                driver = webdriver.Chrome(service=s)
+                driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
+                
+            except:
+                print("Chrome driver installation failed")
+                ERR_CODE = 'chromedriver_install_failed'
+                return False
             
             #ucla logon
             usrname = driver.find_element(By.ID, "logon")
@@ -126,7 +131,8 @@ def register_user():
                 f.close()
 
             except:
-                print("Failed to write user information")
+                print("Write user information failed")
+                ERR_CODE = "write_user_information_failed"
                 return False
             
             driver.quit()
@@ -195,7 +201,6 @@ def auto(username, password, code, PATH):
     passwd.send_keys(password)
     sign_in_but = driver.find_element(By.CLASS_NAME, "primary-button")
     sign_in_but.click()
-    print("UCLA Logon Sign-in Successful")
 
     #duo mobile
     try:
@@ -209,11 +214,11 @@ def auto(username, password, code, PATH):
         enter_passcode_field.send_keys(code)
         enter_a_psscode_button.click()
         driver.switch_to.default_content()
-        print("Duo Mobile 2FA Authentication Successful")
         
     except:
         driver.quit()
-        print("Duo Authentication Failed")
+        print("Duo authentication failed")
+        ERR_CODE = "duo_authentication_failed"
 
     # fill the survey
     try:
@@ -286,8 +291,10 @@ def auto(username, password, code, PATH):
             next_button.click()
         # print("Survey filled successfully!")
         driver.quit()
+        
     except:
-        print("Fail to fill the survey")
+        print("Survey filling failed")
+        ERR_CODE = "survey_filling_failed"
         driver.quit()
 
 
