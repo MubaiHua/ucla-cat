@@ -6,7 +6,7 @@
 date >> $PWD/response.log
 
 crontab -l > ucla_cat_cron
-echo "* * * * * export PYTHONPATH=/opt/homebrew/lib/python3.10/site-packages; date; python3 $PWD/main.py $PWD 1>> $PWD/response.log 2>> $PWD/error.log" >> ucla_cat_cron
+echo "0 0 * * * export PYTHONPATH=/opt/homebrew/lib/python3.10/site-packages; date; python3 $PWD/main.py $PWD 1>> $PWD/response.log 2>> $PWD/error.log" >> ucla_cat_cron
 crontab ucla_cat_cron
 rm ucla_cat_cron
 
