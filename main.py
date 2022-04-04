@@ -11,7 +11,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import chromedriver_autoinstaller
 
 global ERR_CODE
 global ERR_MSG
@@ -30,7 +29,7 @@ def main():
         
         if not register_success:
             ERR_CODE = 'user_registration_failed'
-            print(ERR_MSG)
+            print(ERR_CODE)
         else:
             fill_success = auto_fill_survey()
             
@@ -39,6 +38,11 @@ def main():
         
     if fill_success:
         print("\nSurvey auto-filling success! Enjoy your day :)\n")
+        exit()
+    else:
+        print("\nSurvey auto-filling failed!\n")
+        print(ERR_MSG)
+        exit()
     
                 
 def auto_fill_survey():
@@ -50,29 +54,13 @@ def auto_fill_survey():
     f = open("user_info.txt", "r")
     user_id = f.readline().strip()
     user_password = f.readline().strip()
-    user_path = f.readline().strip()
     f.close()
+    return auto(user_id,user_password,passcode)
     
-    try:
-        auto(user_id,user_password,passcode,user_path)
-    except:
-        print('Failed to auto-fill the survey')
-        ERR_CODE = 'survey_filling_failed'
-        print(ERR_MSG)
-        return False
-        
-    return True
+
 
 def register_user():
     print("Registering a new user...\n")
-    
-    # install chrome web driver
-    try:
-        path = driverInstall()
-
-    except:
-        print("Fail to install chrome web driver")
-        return False
     
     # input duo activation link
     print("Please obtain a Duo Mobile one-time activation link by following the instruction on https://github.com/MubaiHua/Symptom-Monitoring-System-Auto")
@@ -87,19 +75,24 @@ def register_user():
         except:
             print("Please enter a valid link\n")
 
+    try:
+        s=Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=s)
+    except:
+        print("Fail to install chrome webdriver")
+        exit()
+
     # input logon id and password
     print("\nPlease enter your UCLA Logon ID and password (stored on your computer - we can't see it)")
     while True:
         id = input("Logon ID: ")
         password = input("Password: ")
-        path = ""
     
         # verify duo login
         print("\nVerifying UCLA Logon sign in...")
         auth_success = False
+
         try:
-            s=Service(ChromeDriverManager().install())
-            driver = webdriver.Chrome(service=s)
             driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
             
             #ucla logon
@@ -127,7 +120,6 @@ def register_user():
                 f = open("user_info.txt", "w")
                 f.write(id+"\n")
                 f.write(password+"\n")
-                f.write(path+"\n")
                 f.close()
 
             except:
@@ -188,9 +180,8 @@ def activate(host, code):
       resp.write(r.text)
 
 
-def auto(username, password, code, PATH):
-    s=Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=s)
+def auto(username, password, code):
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
 
     #ucla logon
@@ -219,6 +210,7 @@ def auto(username, password, code, PATH):
     except:
         driver.quit()
         print("Duo Authentication Failed")
+        return False
 
     # fill the survey
     try:
@@ -294,6 +286,8 @@ def auto(username, password, code, PATH):
     except:
         print("Fail to fill the survey")
         driver.quit()
+        return False
+    return True
 
 
 def gen():
@@ -319,12 +313,6 @@ def gen():
     f.close()
 
     return(hotp.at(count))
-
-def driverInstall():
-    path = chromedriver_autoinstaller.install(True)  # Check if the current version of chromedriver exists
-                                      # and if it doesn't exist, download it automatically,
-                                      # then add chromedriver to path
-    return path
 
 if __name__ == '__main__':
     main()

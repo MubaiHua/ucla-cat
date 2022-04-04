@@ -1,4 +1,4 @@
 pyotp
 requests
 selenium
-chromedriver_autoinstaller
+webdriver_manager
