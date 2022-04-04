@@ -70,7 +70,7 @@ def register_user():
             host = "api" + link[link.index("-"):link.index("com")+3]
             code = link[link.index("/", 36, 60)+1:]
             
-            #activate(host,code)
+            activate(host,code)
             break
         except:
             print("Please enter a valid link\n")
