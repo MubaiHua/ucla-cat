@@ -1,7 +1,8 @@
 ## Symptom Monitoring System Auto Fill Script
 
 ## To users of this script
-This script is only for a quick and easy way to fill the Symptom Monitoring Survey, please do not use it when you have any symptom of COVID-19
+This script is only for a quick and easy way to fill the Symptom Monitoring Survey, please do not use it when you have any symptom of COVID-19.
+
 Please follow the UCLA guideline for COVID-19, and stay safe Bruins
 
 ## To obtain the activation link, please refer to activation.pdf
@@ -34,6 +35,9 @@ The script may get obselete when UCLA updates the Symptom Monitoring Survey, so 
 
 ## Notes
 The way to bypass DUO 2FA was incorperated from https://github.com/revalo/duo-bypass
+
 And the package for auto install Chrome Web Driver was from https://github.com/yeongbin-jo/python-chromedriver-autoinstaller
+
 This script was also inspired by https://github.com/SparkShen02/Easy-Duo-Authentication/
+
 Massive thank you to all the contributors to the projects above
