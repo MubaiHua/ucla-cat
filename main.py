@@ -70,7 +70,7 @@ def register_user():
             host = "api" + link[link.index("-"):link.index("com")+3]
             code = link[link.index("/", 36, 60)+1:]
             
-            activate(host,code)
+            #activate(host,code)
             break
         except:
             print("Please enter a valid link\n")
@@ -81,6 +81,8 @@ def register_user():
     except:
         print("Fail to install chrome webdriver")
         exit()
+
+    time.sleep(3)
 
     # input logon id and password
     print("\nPlease enter your UCLA Logon ID and password (stored on your computer - we can't see it)")
