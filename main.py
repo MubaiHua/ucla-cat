@@ -300,7 +300,7 @@ def auto(username, password, code):
             yes_button = driver.find_element(By.ID, "QID293-1-label")
             yes_button.click()
             next_button.click()
-        # print("Survey filled successfully!")
+        print("Survey filled successfully!")
         driver.quit()
         
     except:

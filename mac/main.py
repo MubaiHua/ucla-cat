@@ -13,7 +13,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import chromedriver_autoinstaller
 
 global ERR_CODE
 global ERR_MSG
@@ -57,8 +56,8 @@ def auto_fill_survey():
     f = open(PATH + "user_info.txt", "r")
     user_id = f.readline().strip()
     user_password = f.readline().strip()
-    user_path = f.readline().strip()
     f.close()
+    return auto(user_id,user_password,passcode)
     
     try:
         auto(user_id,user_password,passcode,user_path)
@@ -85,16 +84,25 @@ def register_user():
         except:
             print("Please enter a valid link\n")
 
+    try:
+        s=Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=s)
+    except:
+        print("Fail to install chrome webdriver")
+        exit()
+
+    time.sleep(3)
+
     # input logon id and password
     print("\nPlease enter your UCLA Logon ID and password (stored on your computer - we can't see it)")
     while True:
         id = input("Logon ID: ")
         password = input("Password: ")
-        path = ""
     
         # verify duo login
         print("\nVerifying UCLA Logon sign in...")
         auth_success = False
+
         try:
             # install chromedriver
             try: 
@@ -132,7 +140,6 @@ def register_user():
                 f = open(PATH + "user_info.txt", "w")
                 f.write(id+"\n")
                 f.write(password+"\n")
-                f.write(path+"\n")
                 f.close()
 
             except:
@@ -194,9 +201,8 @@ def activate(host, code):
       resp.write(r.text)
 
 
-def auto(username, password, code, PATH):
-    s=Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=s)
+def auto(username, password, code):
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get("https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO")
 
     #ucla logon
@@ -294,13 +300,15 @@ def auto(username, password, code, PATH):
             yes_button = driver.find_element(By.ID, "QID293-1-label")
             yes_button.click()
             next_button.click()
-        # print("Survey filled successfully!")
+        print("Survey filled successfully!")
         driver.quit()
         
     except:
         print("Survey filling failed")
         ERR_CODE = "survey_filling_failed"
         driver.quit()
+        return False
+    return True
 
 
 def gen():
@@ -320,7 +328,6 @@ def gen():
     f.close()
 
     return(hotp.at(count))
-
 
 if __name__ == '__main__':
     main()
