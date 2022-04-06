@@ -1,11 +1,56 @@
 #!/usr/bin/env bash
 
+# check python and dependencies prerequisites
+brew_installed=$(brew -v) 
+if [[ $brew_installed == *"not found"* ]]; then
+  echo "Installing Homebrew..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+  echo "Homebrew already installed"
+fi
+
+python_installed=$(python3 --version) 
+if [[ $python_installed == *"not found"* ]]; then
+  echo "Installing Python3..."
+  brew install python
+else
+  echo "Python3 already installed"
+fi
+
+pip_installed=$(pip3 --version)
+if [[ $pip_installed == *"not found"* ]]; then
+  echo "Installing Pip3..."
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  python3 get-pip.py
+
+else
+  echo "Pip3 already installed"
+fi
+
+# get current script dir location
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-echo SCRIPT_DIR
+pip3 install -r $SCRIPT_DIR/requirements.txt
 
-crontab -l > ucla_cat_cron
-echo "0 0 * * * export PYTHONPATH=/opt/homebrew/lib/python3.10/site-packages; date; python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log" >> ucla_cat_cron
-crontab ucla_cat_cron
-rm ucla_cat_cron
+# check if user exists
+if [[ -e $SCRIPT_DIR/user_info.txt && -e $SCRIPT_DIR/duotoken.hotp ]]; then
 
-echo Scheduled UCLA CAT to run every day at midnight!
+  # check if crontab exists
+  crontab_exists=$(crontab -l | grep -e "python3 $SCRIPT_DIR/main.py $SCRIPT_DIR")
+  if [ -n crontab_exists ]; then
+    echo "UCLA CAT already scheduled!"
+  else
+    # run once
+    python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log
+    echo "Survey auto-filled for today!"
+
+    # create crontab
+    crontab -l > ucla_cat_cron
+    echo "0 0 * * * export PYTHONPATH=/opt/homebrew/lib/python3.10/site-packages; date >> $SCRIPT_DIR/response.log; python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log" >> ucla_cat_cron
+    crontab ucla_cat_cron
+    rm ucla_cat_cron
+
+    echo "Scheduled UCLA CAT to run every day at midnight!"
+  fi
+else
+  echo "User not registered...Please run UCLA_CAT program once to register a new user"
+fi
