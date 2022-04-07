@@ -1,30 +1,14 @@
 
 <div id="top"></div>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
 <!-- PROJECT LOGO -->
-<br />
+<!-- <br />
 <div align="center">
   <a href="https://github.com/MubaiHua/Symptom-Monitoring-System-Auto">
     <img src="images/logo.png" alt="Logo" width="30%" height="30%">
   </a>
 </div>
-
+ -->
+ 
 <!-- ABOUT -->
 ## 🐱 About
 
@@ -32,12 +16,11 @@
 
 One click of UCLA CAT completes the survey for you as a healthy status for today. You can schedule the UCLA CAT to run every day at midnight, so you always get a pretty green screen wherever you go.
 
-![demo](https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/images/demo.gif)
+Here is a demo of how the survey auto-filling runs:
+
 <div align="center">
   <img src="images/demo.gif" alt="Logo" width="100%" height="100%">
 </div>
-
-Disclaimer: This tool is only for people who have no Covid symptoms, and only serves as a convenient way to fill survey to show a healthy status from day to day. If you have any Covid symptoms, please do not and stop using this tool.
 
 <!-- INSTALLATION -->
 ## 📦 Installation
@@ -80,8 +63,12 @@ Contributions are what make this open source community such an amazing place to 
 <!-- SUPPORT  -->
 ## ❤️ Support This Project
 
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jeffreyyu)
-
 If you like this project, please leave a star ⭐️ on the top right corner of this web page. This helps more people to know our project.
 
 Also check out this [chrome extension](https://github.com/SparkShen02/Easy-Duo-Authentication/) to login into your UCLA account in a snap, without pulling out your phone for Duo two-factor authentication.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jeffreyyu)
+
+## 🛑 Disclaimer
+
+This tool is only for people who have no Covid symptoms, and only serves as a convenient way to fill survey to show a healthy status from day to day. If you have any Covid symptoms, please do not and stop using this tool.
