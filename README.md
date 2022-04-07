@@ -1,43 +1,98 @@
-## Symptom Monitoring System Auto Fill Script
 
-## To users of this script
-This script is only for a quick and easy way to fill the Symptom Monitoring Survey, please do not use it when you have any symptom of COVID-19.
+<div id="top"></div>
+<!--
+*** Thanks for checking out the Best-README-Template. If you have a suggestion
+*** that would make this better, please fork the repo and create a pull request
+*** or simply open an issue with the tag "enhancement".
+*** Don't forget to give the project a star!
+*** Thanks again! Now go create something AMAZING! :D
+-->
 
-Please follow the UCLA guideline for COVID-19, and stay safe Bruins
+<!-- PROJECT SHIELDS -->
+<!--
+*** I'm using markdown "reference style" links for readability.
+*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
+*** See the bottom of this document for the declaration of the reference variables
+*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-## To obtain the activation link, please refer to activation.pdf
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="100" height="100">
+  </a>
+</div>
 
-## First Time User
-To Use this script, you need to have a Chrome browser
+<!-- ABOUT -->
+## 🐱 About
 
-Open main.exe to start the script
+**UCLA CAT** ([Covid-symptom-survey](https://uclasurveys.co1.qualtrics.com/jfe/form/SV_aeH9BFhYVjkYTsO) Auto-filling Tool) is an automation software that frees UCLA bruins from the annoying daily routine of manually filling out the Covid Symptom Survey to show our healthy status.
 
-Please enter the activation link you obtained, and then enter your UCLA Logon ID and password
+One click of UCLA CAT completes the survey for you as a healthy status for today. You can schedule the UCLA CAT to run every day at midnight, so you always get a pretty green screen wherever you go.
 
-The script will automatically install the Chrome Web Driver for you, and if it doesn't, please check update your Chrome's version
+![demo](https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/images/demo.gif)
 
-The info about Duo 2FA will be stored in duotoken.hotp, and your UCLA Logon ID and password will be stored in user_info.txt, please keep these 2 files in the same folder of the script
+Disclaimer: This tool is only for people who have no Covid symptoms, and only serves as a convenient way to fill survey to show a healthy status from day to day. If you have any Covid symptoms, please do not and stop using this tool.
 
-The script will install the Chrome Web Driver at its current folder, and if you want to move the Chrome Web Driver into a differnt folder, please don't forget
-to change the path in user_info.txt
+<!-- INSTALLATION -->
+## 📦 Installation
 
-If the script doesn't successfully run at the first time, please try again
+If you are a mac/linux user, follow this installation guide 👉 
+If you are a windows user, follow this installation guide 👉 
 
-## For people who can't run main.exe
-If you have a python installed in your computer, you can run this command to install the packages needed
-```
-pip install -r requirements.txt
-```
-And then run the script main.py using Python
 
-## Future updates
-The script may get obselete when UCLA updates the Symptom Monitoring Survey, so stay updated
+## 🧑‍💻 Built With
 
-## Notes
-The way to bypass DUO 2FA was incorperated from https://github.com/revalo/duo-bypass
+* [Python3](https://www.python.org/)
+* [Selenium](https://www.selenium.dev/)
+* [Bash](https://www.gnu.org/software/bash/)
 
-And the package for auto install Chrome Web Driver was from https://github.com/yeongbin-jo/python-chromedriver-autoinstaller
+The project incorporates techniques from  [duo-bypass](https://github.com/revalo/duo-bypass) to bypass Duo two-factor authentication. 
 
-This script was also inspired by https://github.com/SparkShen02/Easy-Duo-Authentication/
+And the package for auto install Chrome Web Driver was from  [https://github.com/yeongbin-jo/python-chromedriver-autoinstaller](https://github.com/yeongbin-jo/python-chromedriver-autoinstaller)
 
-Massive thank you to all the contributors to the projects above
+This script was also inspired by  [https://github.com/SparkShen02/Easy-Duo-Authentication/](https://github.com/SparkShen02/Easy-Duo-Authentication/)
+
+<!-- SETUP  -->
+## 💻 Set up your project locally
+
+- Install Python 3.7+
+- Install pip3
+- Clone this project
+- Install Python dependencies
+```sh
+  pip3 install -r requirements.txt
+  ```
+- Run the Python script
+```sh
+  python3 main.py
+  ```
+  
+<!-- CONTRIBUTING  -->
+## ✍️ Contributing
+
+-   To request a feature or report bugs: create an issue describing your request.
+-   To add a new feature or fix bugs: fork this repository, make code changes, and send a pull request.
+
+Contributions are what make this open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jeffreyyu)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/MubaiHua/Symptom-Monitoring-System-Auto.svg?style=for-the-badge
+[contributors-url]: https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/MubaiHua/Symptom-Monitoring-System-Auto.svg?style=for-the-badge
+[forks-url]: https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/network/members
+[stars-shield]: https://img.shields.io/github/stars/MubaiHua/Symptom-Monitoring-System-Auto.svg?style=for-the-badge
+[stars-url]: https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/stargazers
+[issues-shield]: https://img.shields.io/github/issues/MubaiHua/Symptom-Monitoring-System-Auto.svg?style=for-the-badge
+[issues-url]: https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/issues
+[license-shield]: https://img.shields.io/github/license/MubaiHua/Symptom-Monitoring-System-Auto.svg?style=for-the-badge
+[license-url]: https://github.com/MubaiHua/Symptom-Monitoring-System-Auto/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
