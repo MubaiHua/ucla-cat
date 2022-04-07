@@ -36,7 +36,7 @@ if [[ -e $SCRIPT_DIR/user_info.txt && -e $SCRIPT_DIR/duotoken.hotp ]]; then
 
   # check if crontab exists
   crontab_exists=$(crontab -l | grep -e "python3 $SCRIPT_DIR/main.py $SCRIPT_DIR")
-  if [ -n crontab_exists ]; then
+  if [ -n crontab_exists || crontab_exists == *"no crontab"* ]; then
     echo "UCLA CAT already scheduled!"
   else
     # run once
@@ -45,7 +45,7 @@ if [[ -e $SCRIPT_DIR/user_info.txt && -e $SCRIPT_DIR/duotoken.hotp ]]; then
 
     # create crontab
     crontab -l > ucla_cat_cron
-    echo "0 0 * * * export PYTHONPATH=/opt/homebrew/lib/python3.10/site-packages; date >> $SCRIPT_DIR/response.log; python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log" >> ucla_cat_cron
+    echo "0 0 * * * chmod +x $SCRIPT_DIR/cronjob.sh; $SCRIPT_DIR/cronjob.sh" >> ucla_cat_cron
     crontab ucla_cat_cron
     rm ucla_cat_cron
 
