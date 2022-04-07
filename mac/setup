@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# check python and dependencies prerequisites
+brew_installed=$(brew -v) 
+if [[ $brew_installed == *"not found"* ]]; then
+  echo "Installing Homebrew..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+  echo "Homebrew already installed"
+fi
+
+python_installed=$(python3 --version) 
+if [[ $python_installed == *"not found"* ]]; then
+  echo "Installing Python3..."
+  brew install python
+else
+  echo "Python3 already installed"
+fi
+
+pip_installed=$(pip3 --version)
+if [[ $pip_installed == *"not found"* ]]; then
+  echo "Installing Pip3..."
+  curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+  python3 get-pip.py
+
+else
+  echo "Pip3 already installed"
+fi
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+pip3 install -r $SCRIPT_DIR/requirements.txt
+echo "UCLA CAT setup completed!"
