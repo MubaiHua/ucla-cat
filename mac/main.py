@@ -19,6 +19,7 @@ global ERR_MSG
 ERR_CODE = 'unknown_error'
 ERR_MSG = '\nPlease run the program again or contact the developer team with your error (code: %s)' % ERR_CODE
 PATH = ''
+WAIT_TIME = 10
 if len(sys.argv) > 1:
     PATH = sys.argv[1] + '/'
 
@@ -219,11 +220,18 @@ def auto(username, password, code):
             EC.element_to_be_clickable((By.ID,"duo_iframe"))
         )
         driver.switch_to.frame(duo_frame)
-        enter_a_psscode_button = driver.find_element(By.ID, "passcode")
+        
+        enter_a_psscode_button = WebDriverWait(driver, WAIT_TIME).until(
+            EC.element_to_be_clickable((By.ID,"passcode"))
+        )
         enter_a_psscode_button.click()
-        enter_passcode_field = driver.find_element(By.NAME, "passcode")
+        
+        enter_passcode_field = WebDriverWait(driver, WAIT_TIME).until(
+            EC.element_to_be_clickable((By.NAME,"passcode"))
+        )
         enter_passcode_field.send_keys(code)
         enter_a_psscode_button.click()
+        
         driver.switch_to.default_content()
         
     except:
