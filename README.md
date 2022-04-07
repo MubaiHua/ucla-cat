@@ -29,6 +29,10 @@ If you are a mac/linux user, follow this installation guide 👉
 
 If you are a windows user, follow this installation guide 👉 
 
+## ✋ Disclaimer
+
+This tool is only for people who have no Covid symptoms, and only serves as a convenient way to fill survey to show a healthy status from day to day. If you have any Covid symptoms, please do not and stop using this tool.
+
 ## 🧑‍💻 Built With
 
 * [Python3](https://www.python.org/)
@@ -68,7 +72,3 @@ If you like this project, please leave a star ⭐️ on the top right corner of 
 Also check out this [chrome extension](https://github.com/SparkShen02/Easy-Duo-Authentication/) to login into your UCLA account in a snap, without pulling out your phone for Duo two-factor authentication.
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jeffreyyu)
-
-## 🛑 Disclaimer
-
-This tool is only for people who have no Covid symptoms, and only serves as a convenient way to fill survey to show a healthy status from day to day. If you have any Covid symptoms, please do not and stop using this tool.
