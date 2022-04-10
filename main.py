@@ -285,27 +285,27 @@ def auto(username, password, code):
         no_button.click()
         next_button.click()
 
-        #page 7
-        next_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "NextButton"))
-        )
-        no_button = driver.find_element(By.ID, "QID289-2-label")
-        no_button.click()
-        next_button.click()
+        # #page 7
+        # next_button = WebDriverWait(driver,WAIT_TIME).until(
+        #     EC.element_to_be_clickable((By.ID, "NextButton"))
+        # )
+        # no_button = driver.find_element(By.ID, "QID289-2-label")
+        # no_button.click()
+        # next_button.click()
 
-        #page 8 for user without test result
-        page = WebDriverWait(driver,WAIT_TIME).until(
-            EC.presence_of_element_located((By.ID, "Questions"))
-        )
-        try:
-            next_button = WebDriverWait(driver,WAIT_TIME).until(
-                EC.element_to_be_clickable((By.ID, "NextButton"))
-            )
-            yes_button = driver.find_element(By.ID, "QID293-1-label")
-            yes_button.click()
-            next_button.click()
-        except: 
-            pass
+        # #page 8 for user without test result
+        # page = WebDriverWait(driver,WAIT_TIME).until(
+        #     EC.presence_of_element_located((By.ID, "Questions"))
+        # )
+        # try:
+        #     next_button = WebDriverWait(driver,WAIT_TIME).until(
+        #         EC.element_to_be_clickable((By.ID, "NextButton"))
+        #     )
+        #     yes_button = driver.find_element(By.ID, "QID293-1-label")
+        #     yes_button.click()
+        #     next_button.click()
+        # except: 
+        #     pass
             
         WebDriverWait(driver,WAIT_TIME).until(
             EC.presence_of_element_located((By.ID, "EndOfSurvey"))
