@@ -23,4 +23,3 @@ while [[ $TIMES -gt 0 ]]; do
 done
 
 cat $SCRIPT_DIR/tmp.log >> $SCRIPT_DIR/response.log;
-rm $SCRIPT_DIR/tmp.log;

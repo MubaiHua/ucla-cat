@@ -28,5 +28,10 @@ else
 fi
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+chmod +x $SCRIPT_DIR/main.py
+chmod +x $SCRIPT_DIR/autofill
+chmod +x $SCRIPT_DIR/scheduler
+chmod +x $SCRIPT_DIR/cronjob
+
 pip3 install -r $SCRIPT_DIR/requirements.txt
 echo "UCLA CAT setup completed!"
