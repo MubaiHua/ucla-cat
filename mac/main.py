@@ -240,104 +240,83 @@ def auto(username, password, code):
         ERR_CODE = "duo_authentication_failed"
 
     # fill the survey
-    page = 0
     try:
-        #page 1
-        page = 1
+    #page 1
         next_button = WebDriverWait(driver,WAIT_TIME).until(
             EC.element_to_be_clickable((By.ID, "NextButton"))
         )
         next_button.click()
 
         #page 2
-        page = 2
         next_button = WebDriverWait(driver,WAIT_TIME).until(
             EC.element_to_be_clickable((By.ID, "NextButton"))
         )
         next_button.click()
 
         #page 3
-        page = 3
         next_button = WebDriverWait(driver,WAIT_TIME).until(
             EC.element_to_be_clickable((By.ID, "NextButton"))
         )
-        no_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "QID215-2-label"))
-        )
+        no_button = driver.find_element(By.ID, "QID215-2-label")
         no_button.click()
         next_button.click()
 
         #page 4
-        page = 4
         next_button = WebDriverWait(driver,WAIT_TIME).until(
             EC.element_to_be_clickable((By.ID, "NextButton"))
         )
-        yes_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "QID207-4-label"))
-        )
+        yes_button = driver.find_element(By.ID, "QID207-4-label")
         yes_button.click()
         next_button.click()
 
         #page 5
-        page = 5
         next_button = WebDriverWait(driver,WAIT_TIME).until(
             EC.element_to_be_clickable((By.ID, "NextButton"))
         )
-        no_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "QID2-1-label"))
-        )
+        no_button = driver.find_element(By.ID, "QID2-1-label")
         no_button.click()
         next_button.click()
 
         #page 6
-        page = 6
         next_button = WebDriverWait(driver,WAIT_TIME).until(
             EC.element_to_be_clickable((By.ID, "NextButton"))
         )
-        no_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "QID12-2-label"))
-        )
+        no_button = driver.find_element(By.ID, "QID12-2-label")
         no_button.click()
         next_button.click()
 
-        #page 7
-        page = 7
-        next_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "NextButton"))
-        )
-        no_button = WebDriverWait(driver,WAIT_TIME).until(
-            EC.element_to_be_clickable((By.ID, "QID289-2-label"))
-        )
-        no_button.click()
-        next_button.click()
+        # #page 7
+        # next_button = WebDriverWait(driver,WAIT_TIME).until(
+        #     EC.element_to_be_clickable((By.ID, "NextButton"))
+        # )
+        # no_button = driver.find_element(By.ID, "QID289-2-label")
+        # no_button.click()
+        # next_button.click()
 
-        #page 8 for user without test result
-        page = 8
-        page = WebDriverWait(driver,WAIT_TIME).until(
-            EC.presence_of_element_located((By.ID, "Questions"))
-        )
-        
-        page = 9
-        try:
-            next_button = WebDriverWait(driver,WAIT_TIME).until(
-                EC.element_to_be_clickable((By.ID, "NextButton"))
-            )
-            yes_button = driver.find_element(By.ID, "QID293-1-label")
-            yes_button.click()
-            next_button.click()
-        except: 
-            pass
+        # #page 8 for user without test result
+        # page = WebDriverWait(driver,WAIT_TIME).until(
+        #     EC.presence_of_element_located((By.ID, "Questions"))
+        # )
+        # try:
+        #     next_button = WebDriverWait(driver,WAIT_TIME).until(
+        #         EC.element_to_be_clickable((By.ID, "NextButton"))
+        #     )
+        #     yes_button = driver.find_element(By.ID, "QID293-1-label")
+        #     yes_button.click()
+        #     next_button.click()
+        # except: 
+        #     pass
             
-        page = 10
         WebDriverWait(driver,WAIT_TIME).until(
             EC.presence_of_element_located((By.ID, "EndOfSurvey"))
         )
+        time.sleep(1)
             
         print("Survey filled successfully!")
         driver.quit()
         
     except:
-        print("Survey filling failed at page", page)
+        print("Survey filling failed")
         ERR_CODE = "survey_filling_failed"
         driver.quit()
         return False

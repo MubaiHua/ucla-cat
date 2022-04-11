@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-date >> $SCRIPT_DIR/response.log;
-python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log;
+date;
+python3 $SCRIPT_DIR/main.py $SCRIPT_DIR;
 echo "Survey auto-filled for today!"

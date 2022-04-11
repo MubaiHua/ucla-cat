@@ -35,8 +35,10 @@ pip3 install -r $SCRIPT_DIR/requirements.txt
 if [[ -e $SCRIPT_DIR/user_info.txt && -e $SCRIPT_DIR/duotoken.hotp ]]; then
 
   # check if crontab exists
-  crontab_exists=$(crontab -l | grep -e "python3 $SCRIPT_DIR/main.py $SCRIPT_DIR")
-  if [ -n crontab_exists || crontab_exists == *"no crontab"* ]; then
+  crontab_exists=$(crontab -l | grep -e "$SCRIPT_DIR/cronjob")
+  echo $crontab_exists
+  # && crontab_exists != *"no crontab"* 
+  if [[ -n $crontab_exists ]]; then
     echo "UCLA CAT already scheduled!"
   else
     # run once
@@ -45,7 +47,7 @@ if [[ -e $SCRIPT_DIR/user_info.txt && -e $SCRIPT_DIR/duotoken.hotp ]]; then
 
     # create crontab
     crontab -l > ucla_cat_cron
-    echo "* * * * * $SCRIPT_DIR/cronjob" >> ucla_cat_cron
+    echo "0 0 * * * $SCRIPT_DIR/cronjob" >> ucla_cat_cron
     crontab ucla_cat_cron
     rm ucla_cat_cron
 
