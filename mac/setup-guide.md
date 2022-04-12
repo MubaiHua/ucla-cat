@@ -16,7 +16,23 @@ Unzip mac.zip into a folder. You'll see the following files in the folder.
 
 Click and run  `setup`  in the folder to install the required dependencies. 
 
-After clicking a program in the folder, if you see a popup that says "[program_name] cannot be opened", jump to `Trust the Developer` section at the bottom of this page to solve this issue.
+## Trust the Developer
+
+After clicking a program in the folder, if you see the following popup, follow the steps below to solve this issue.
+
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9c43413b-a4b5-420a-8fe1-a3cc17fb3734/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T144908Z&X-Amz-Expires=86400&X-Amz-Signature=fa33013187d2be25964ad3f660f8b670534afd59d7a6b5572fea0c33ed105a25&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+
+Go to System Preferences -> Security & Privacy.
+
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ce1decdf-4caf-4989-8a3b-74fa6d19f803/Screen_Shot_2022-04-12_at_7.54.42_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T145452Z&X-Amz-Expires=86400&X-Amz-Signature=fcf5e1dfa3eb6d9cd611a302f59a7eb94857b63813fa2b05e3a94291b5922a37&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-04-12%2520at%25207.54.42%2520AM.png%22&x-id=GetObject)
+
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/df4936a7-c44f-449e-a5b8-2086d1da5b4f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T145544Z&X-Amz-Expires=86400&X-Amz-Signature=9dfee07a41b276433c01518b1f2e033284b379a94703de15492529d58cfe8ea9&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+
+Click Open Anyway besides the program name you are trying to run.
+
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/07498d76-41ad-4233-b4f0-1d3d9f39cf51/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T145558Z&X-Amz-Expires=86400&X-Amz-Signature=8ed46bceec68d5e7ec5f172009605d771a1e494c5bcc580c9de075d0ff571683&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
+
+Run the program again.
 
 ## Get a Duo activation link
 
@@ -53,16 +69,3 @@ Click and run `scheduler` in the folder. If you see this popup, click OK.
 ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9c43413b-a4b5-420a-8fe1-a3cc17fb3734/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T144908Z&X-Amz-Expires=86400&X-Amz-Signature=fa33013187d2be25964ad3f660f8b670534afd59d7a6b5572fea0c33ed105a25&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
 
 UCLA CAT is scheduled to run everyday at midnight on your mac now.
-
-## Trust the Developer
-
-Go to System Preferences -> Security & Privacy.
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ce1decdf-4caf-4989-8a3b-74fa6d19f803/Screen_Shot_2022-04-12_at_7.54.42_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T145452Z&X-Amz-Expires=86400&X-Amz-Signature=fcf5e1dfa3eb6d9cd611a302f59a7eb94857b63813fa2b05e3a94291b5922a37&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-04-12%2520at%25207.54.42%2520AM.png%22&x-id=GetObject)
-
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/df4936a7-c44f-449e-a5b8-2086d1da5b4f/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T145544Z&X-Amz-Expires=86400&X-Amz-Signature=9dfee07a41b276433c01518b1f2e033284b379a94703de15492529d58cfe8ea9&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
-
-Click Open Anyway besides the program name you are trying to run.
-
-![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/07498d76-41ad-4233-b4f0-1d3d9f39cf51/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T145558Z&X-Amz-Expires=86400&X-Amz-Signature=8ed46bceec68d5e7ec5f172009605d771a1e494c5bcc580c9de075d0ff571683&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Untitled.png%22&x-id=GetObject)
-
-Run the program again.
