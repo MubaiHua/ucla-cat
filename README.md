@@ -25,9 +25,9 @@ Here is a demo of how the survey auto-filling runs:
 <!-- INSTALLATION -->
 ## 📦 Installation
 
-If you are a mac/linux user, follow this installation guide 👉 
+If you're using mac/linux, follow this [setup guide](https://github.com/MubaiHua/ucla-cat/blob/main/mac/setup-guide.md).
 
-If you are a windows user, follow this installation guide 👉 
+If you're using windows, go [here](https://github.com/MubaiHua/ucla-cat/blob/main/win/main.exe) and click Download. Run `main.exe` to auto-fill the survey for today. No scheduler for windows is released yet.
 
 ## ✋ Disclaimer
 
