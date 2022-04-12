@@ -60,7 +60,7 @@ Click and run `autofill`  in the folder. Paste your activation link in the termi
 
 Enter your UCLA Logon ID and password. Then a chrome window will pop up and the survey will start auto-filling.
 
-You only need to enter the activation link or account information for this first time. Click `autofill` and the survey will be filled automatically.
+You only need to enter the activation link or account information for this first time. From now on, you can click `autofill` and the survey will be auto-filled on its own.
 
 ## Schedule survey auto-fill everyday
 
