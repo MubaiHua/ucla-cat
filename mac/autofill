@@ -3,4 +3,3 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 date;
 python3 $SCRIPT_DIR/main.py $SCRIPT_DIR;
-echo "Survey auto-filled for today!"

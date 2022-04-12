@@ -42,8 +42,8 @@ if [[ -e $SCRIPT_DIR/user_info.txt && -e $SCRIPT_DIR/duotoken.hotp ]]; then
     echo "UCLA CAT already scheduled!"
   else
     # run once
-    python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log
-    echo "Survey auto-filled for today!"
+    # python3 $SCRIPT_DIR/main.py $SCRIPT_DIR 1>> $SCRIPT_DIR/response.log 2>> $SCRIPT_DIR/error.log
+    # echo "Survey auto-filled for today!"
 
     # create crontab
     crontab -l > ucla_cat_cron

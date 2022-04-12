@@ -59,15 +59,7 @@ def auto_fill_survey():
     user_password = f.readline().strip()
     f.close()
     return auto(user_id,user_password,passcode)
-    
-    try:
-        auto(user_id,user_password,passcode,user_path)
-        return True
-        
-    except:
-        print("Survey auto-filling failed")
-        ERR_CODE = 'survey_auto_fill_failed'
-        return False
+
 
 def register_user():
     print("Registering a new user...\n")
@@ -80,8 +72,13 @@ def register_user():
             host = "api" + link[link.index("-"):link.index("com")+3]
             code = link[link.index("/", 36, 60)+1:]
             
-            activate(host,code)
-            break
+            is_activated = activate(host,code)
+            
+            if is_activated:
+                print('Activate successfully')
+                break
+            else:
+                print('Activation failed...Please enter another activation link')
         except:
             print("Please enter a valid link\n")
 
@@ -160,9 +157,11 @@ def register_user():
 #use https://www.base64decode.org/ to decode YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY and put it in 'host'
 #decoded format should be in the format: api-XXXXX.duosecurity.com
 def activate(host, code):
-  url = 'https://{host}/push/v2/activation/{code}?customer_protocol=1'.format(host=host, code=code)
-  headers = {'User-Agent': 'okhttp/2.7.5'}
-  data = {'jailbroken': 'false',
+    print('Activating Duo Modile...')
+    
+    url = 'https://{host}/push/v2/activation/{code}?customer_protocol=1'.format(host=host, code=code)
+    headers = {'User-Agent': 'okhttp/2.7.5'}
+    data = {'jailbroken': 'false',
           'architecture': 'arm64',
           'region': 'US',
           'app_id': 'com.duosecurity.duomobile',
@@ -177,30 +176,38 @@ def activate(host, code):
           'model': 'Pixel 3a',
           'security_patch_level': '2021-02-01'}
 
-  r = requests.post(url, headers=headers, data=data)
-  response = json.loads(r.text)
+    r = requests.post(url, headers=headers, data=data)
+    response = json.loads(r.text)
 
-  try:
-    secret = base64.b32encode(response['response']['hotp_secret'].encode())
-  except KeyError:
-    print(response)
-    sys.exit(1)
+    try:
+        secret = base64.b32encode(response['response']['hotp_secret'].encode())
+    except KeyError:
+        print(response)
+        sys.exit(1)
+        return False
 
-#   print("secret", secret)
+    try:
+        f = open(PATH + "duotoken.hotp", "w")
+        f.write(secret.decode() + "\n")
+        f.write("0")
+        f.close()
 
-#   print("10 Next OneTime Passwords!")
-  # Generate 10 Otps!
-#   hotp = pyotp.HOTP(secret)
-#   for _ in range(10):
-#       print(hotp.at(_))
+    except:
+        print("Write duotoken.hotp failed")
+        ERR_CODE = "write_duo_token_failed"
+        return False
+        
+    try:
+        f = open(PATH + "response.json", "w")
+        f.write(r.text)
+        f.close()
 
-  with open('duotoken.hotp', 'w') as file:
-      file.write(secret.decode() + "\n")
-      file.write("0")
+    except:
+        print("Write response.json failed")
+        ERR_CODE = "write_response_json_failed"
+        return False
 
-  with open('response.json', 'w') as resp:
-      resp.write(r.text)
-
+    return True
 
 def auto(username, password, code):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
