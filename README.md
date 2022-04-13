@@ -27,7 +27,8 @@ Here is a demo of how the survey auto-filling runs:
 
 If you're using mac/linux, follow this [setup guide](https://github.com/MubaiHua/ucla-cat/blob/main/mac/setup-guide.md).
 
-If you're using windows, go [here](https://github.com/MubaiHua/ucla-cat/blob/main/win/main.exe) and click Download. Run `main.exe` to auto-fill the survey for today. No scheduler for windows is released yet.
+If you're using windows, go [here](https://github.com/MubaiHua/ucla-cat/blob/main/win/main.exe) and click Download. Run `main.exe` to auto-fill the survey for today. 
+
 
 ## ✋ Disclaimer
 
@@ -55,6 +56,11 @@ This project incorporates techniques from [duo-bypass](https://github.com/revalo
 ```sh
   python3 main.py
   ```
+
+<!-- UPDATE -->
+## 🆙 Update the scirpt
+We will try to release new version of the program every time the symptom monitoring survey is changed. If you are unfamiliar with git and github, you may need to go to this website and download the newest version of the program.
+
   
 <!-- CONTRIBUTING  -->
 ## ✍️ Contributing
