@@ -27,7 +27,7 @@ Here is a demo of how the survey auto-filling runs:
 
 If you're using mac/linux, follow this [setup guide](https://github.com/MubaiHua/ucla-cat/blob/main/mac/setup-guide.md).
 
-If you're using windows, go [here](https://github.com/MubaiHua/ucla-cat/blob/main/win/main.exe) and click Download. You can refer to [setup guide](https://github.com/MubaiHua/ucla-cat/blob/main/mac/setup-guide.md) to finish the set-up process. We highly recommend you to put `main.exe` in a seperate folder (not directly on your desktop) becuase it will generate extra files that will be used for the script.
+If you're using windows, go [here](https://github.com/MubaiHua/ucla-cat/blob/main/win/main.exe) and click Download. You can refer to [setup guide](https://github.com/MubaiHua/ucla-cat/blob/main/win/setup-guide.md) to finish the set-up process. We highly recommend you to put `main.exe` in a seperate folder (not directly on your desktop) becuase it will generate extra files that will be used for the script.
 
 ## ✋ Disclaimer
 
