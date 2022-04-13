@@ -40,6 +40,7 @@ This tool is only for people who have no Covid symptoms, and only serves as a co
 * [Python3](https://www.python.org/)
 * [Selenium](https://www.selenium.dev/)
 * [Bash](https://www.gnu.org/software/bash/)
+* [Powershell](https://docs.microsoft.com/en-us/powershell/)
 
 This project incorporates techniques from [duo-bypass](https://github.com/revalo/duo-bypass) to bypass Duo two-factor authentication. 
 
