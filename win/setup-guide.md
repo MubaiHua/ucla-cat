@@ -39,3 +39,5 @@ Upon running `main.exe`, three files will be created, `duotoken.hotp`, `response
 Click and run `scheduler.bat` in the folder, and it will add this task to windows scheduler. You can double check wether this is successful by search `Task Scheduler` in the start menu, open the drop down list of `Task Scheduler Library`, and check whether a folder called `ucla-cat` is created.
 
 If the scheduling script doesn't successfully add this task, you can also add this task to windows scheduler manually by following the [instruction](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10) here. Dont forget to specifying the running directory for scheduled task by following the instruction [here](https://stackoverflow.com/questions/447774/specifying-the-running-directory-for-scheduled-tasks-using-schtasks-exe).
+
+If your computer is in sleeping mode at the scheduled time, the survey will be auto-filled after you wake uo your computer.
