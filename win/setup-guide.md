@@ -27,3 +27,7 @@ Double Click and run `main.exe`, and you will be greated with a command line int
 Enter your UCLA Logon ID and password. Then a chrome window will pop up and the survey will start auto-filling.
 
 You only need to enter the activation link or account information for this first time. From now on, you can run `main.exe` and the survey will be auto-filled on its own.
+
+## Note on the files created
+Upon running `main.exe`, three files will be created, `duotoken.hotp`, `response.json`, `user_info.txt`. The first two files contains vital information for bypass duo mobile 2FA, and `user_info.txt` contains the UCLA Logon ID and password you entered. Please do not delete these files unless you want to repeat the setup process.
+
