@@ -52,6 +52,10 @@ You'll receive an email called `Duo Mobile Activation` soon. Copy the activation
 
 ![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/bb75c03f-78fe-4d54-8135-74d7c21590f4/Screen_Shot_2022-04-12_at_7.24.31_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220412%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220412T142519Z&X-Amz-Expires=86400&X-Amz-Signature=9caa26f99dd94cdeed0c7105ea6076d24956d15a32902bcd98c2297e16cbb11d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-04-12%2520at%25207.24.31%2520AM.png%22&x-id=GetObject)
 
+If you previously set duo auto push to a default device, go to `Add a new device` in the Duo authentication page and change `When I log in` as `Ask me to choose an authentication method`.
+
+![](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/9354277a-006e-4e72-b5be-574dae27d771/Screen_Shot_2022-04-13_at_9.20.40_AM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220413%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220413T162052Z&X-Amz-Expires=86400&X-Amz-Signature=7035beb1eeda14c167a9d3b9bad3704c79df7cd71268929a9ab073a9e122491b&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-04-13%2520at%25209.20.40%2520AM.png%22&x-id=GetObject)
+
 ## Run survey auto-fill
 
 Click and run `autofill`  in the folder. Paste your activation link in the terminal.
